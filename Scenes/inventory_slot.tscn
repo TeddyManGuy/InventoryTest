@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddn8msemtynyc"]
+[gd_scene load_steps=3 format=3 uid="uid://ddn8msemtynyc"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_slot.gd" id="1_4ngxi"]
-[ext_resource type="Texture2D" uid="uid://by0onh1xpbew8" path="res://Assets/Icons/icon11.png" id="2_m42xt"]
-[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="3_j7wbg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0klno"]
 
@@ -43,7 +41,6 @@ color = Color(0.611765, 0.603922, 0.584314, 1)
 [node name="ItemIcon" type="Sprite2D" parent="InnerBorder"]
 position = Vector2(70, 70)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_m42xt")
 
 [node name="ItemQuantity" type="Label" parent="InnerBorder"]
 layout_mode = 0
@@ -51,7 +48,6 @@ offset_left = 5.0
 offset_right = 45.0
 offset_bottom = 51.0
 theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 50
 text = "1"
 
@@ -78,7 +74,6 @@ offset_left = 5.0
 offset_right = 45.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 40
 text = "Name"
 
@@ -93,7 +88,6 @@ offset_right = 45.0
 offset_bottom = 11.5
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 0.784314)
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 40
 text = "Type"
 
@@ -107,7 +101,6 @@ offset_top = -23.0
 offset_right = 45.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 0.588235)
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 40
 text = "Effect"
 
@@ -129,7 +122,6 @@ offset_top = 10.0
 offset_right = 115.0
 offset_bottom = 53.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 40
 text = "Use"
 
@@ -146,11 +138,11 @@ offset_right = 115.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_j7wbg")
 theme_override_font_sizes/font_size = 40
 text = "Drop"
 
 [connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
 [connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
 [connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="UsagePanel/UseButton" to="." method="_on_use_button_pressed"]
 [connection signal="pressed" from="UsagePanel/DropButton" to="." method="_on_drop_button_pressed"]

@@ -935,11 +935,10 @@ position = Vector2(633, 382)
 item_type = "Consumable"
 item_name = "Potion 1"
 item_texture = ExtResource("10_5boue")
-item_effect = "Speed 100"
+item_effect = "Speed"
 
 [node name="Inventory_Item2" parent="." instance=ExtResource("9_rnr80")]
 position = Vector2(657, 280)
 item_type = "Key"
 item_name = "Silver Key"
 item_texture = ExtResource("11_6pu60")
-item_effect = "Unlocks Door"
