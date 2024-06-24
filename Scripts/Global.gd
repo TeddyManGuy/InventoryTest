@@ -115,3 +115,12 @@ func swap_inventory_items(index1, index2):
 	inventory[index2] = temp
 	inventory_updated.emit()
 	return true
+
+func swap_hotbar_items(index1, index2):
+	if index1 < 0 or index1 > hotbar_inventory.size() or index2 < 0 or index2 > hotbar_inventory.size():
+		return false
+	var temp = hotbar_inventory[index1]
+	hotbar_inventory[index1] = hotbar_inventory[index2]
+	hotbar_inventory[index2] = temp
+	inventory_updated.emit()
+	return true

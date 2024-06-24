@@ -66,4 +66,3 @@ func drop_slot(slot1: Control, slot2: Control):
 		if Global.swap_inventory_items(slot1_index, slot2_index):
 			print("Dropping slot items: ", slot1, slot2_index)
 			_on_inventory_updated()
-
