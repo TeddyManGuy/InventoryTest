@@ -7,9 +7,13 @@ extends Control
 @onready var item_type = $DetailsPanel/ItemType
 @onready var item_effect = $DetailsPanel/ItemEffect
 @onready var usage_panel = $UsagePanel
+@onready var assign_button = $UsagePanel/AssignButton
+
 
 #Slot Item
 var item = null
+var slot_index = -1
+var is_assigned = false
 
 func _on_item_button_pressed():
 	if item != null:
@@ -37,7 +41,7 @@ func set_item(new_item):
 		item_effect.text = str("+ ", item["effect"])
 	else:
 		item_effect.text = ""
-
+	update_assignment_status()
 
 func _on_drop_button_pressed():
 	if item != null:
@@ -46,15 +50,36 @@ func _on_drop_button_pressed():
 		drop_offset = drop_offset.rotated(Global.player_node.rotation)
 		Global.drop_item(item, drop_position + drop_offset)
 		Global.remove_item(item["type"], item["effect"])
+		Global.remove_hotbar_item(item["type"], item["effect"])
 		usage_panel.visible = false
 
 func _on_use_button_pressed():
 	usage_panel.visible = false
-	
 	if item != null and item["effect"] != "":
 		if Global.player_node:
 			Global.player_node.apply_item_effect(item)
 			Global.remove_item(item["type"], item["effect"])
-			
+			Global.remove_hotbar_item(item["type"], item["effect"])
 		else:
 			print("Player could not be found")
+
+
+func set_slot_index(new_index):
+	slot_index = new_index
+
+func update_assignment_status():
+	is_assigned = Global.is_item_assigned_to_hotbar(item)
+	if is_assigned:
+		assign_button.text = "Unassign"
+	else:
+		assign_button.text = "Assign"
+		
+func _on_assign_button_pressed():
+	if item != null:
+		if is_assigned:
+			Global.unassign_hotbar_item(item["type"], item["effect"])
+			is_assigned = false
+		else:
+			Global.add_item(item, true)
+			is_assigned = true
+		update_assignment_status()

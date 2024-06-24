@@ -34,7 +34,7 @@ func pickup_item():
 		"scene_path": scene_path
 	}
 	if Global.player_node:
-		Global.add_item(item)
+		Global.add_item(item, false)
 		self.queue_free()
 
 
@@ -53,3 +53,9 @@ func set_item_data(data):
 	item_name = data["name"]
 	item_effect = data["effect"]
 	item_texture = data["texture"]
+
+func initiate_items(type, name, effect, texture):
+	item_type = type
+	item_name = name
+	item_effect = effect
+	item_texture = texture

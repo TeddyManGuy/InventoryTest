@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://bc7bw4jxc3l26"]
+[gd_scene load_steps=33 format=3 uid="uid://bc7bw4jxc3l26"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_s4qpe"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://Assets/person.png" id="2_3cttr"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="3_kwqra"]
 [ext_resource type="PackedScene" uid="uid://b7rglcvcplad0" path="res://Scenes/inventory_ui.tscn" id="4_mys3i"]
+[ext_resource type="PackedScene" uid="uid://lxxm7u6yj0xm" path="res://Scenes/inventory_hotbar.tscn" id="5_o2dn6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvpp8"]
 atlas = ExtResource("2_3cttr")
@@ -282,3 +283,7 @@ theme_override_font_sizes/font_size = 60
 text = "Inventory"
 
 [node name="Inventory_UI" parent="InventoryUI/ColorRect" instance=ExtResource("4_mys3i")]
+
+[node name="InventoryHotbar" type="CanvasLayer" parent="."]
+
+[node name="Inventory_Hotbar" parent="InventoryHotbar" instance=ExtResource("5_o2dn6")]
