@@ -8,16 +8,17 @@ extends Control
 @onready var item_effect = $DetailsPanel/ItemEffect
 @onready var usage_panel = $UsagePanel
 @onready var assign_button = $UsagePanel/AssignButton
+@onready var outer_border = $OuterBorder
+
+#Signals
+signal drag_start(slot)
+signal drag_end()
 
 
 #Slot Item
 var item = null
 var slot_index = -1
 var is_assigned = false
-
-func _on_item_button_pressed():
-	if item != null:
-		usage_panel.visible = !usage_panel.visible
 
 func _on_item_button_mouse_entered():
 	if item != null:
@@ -83,3 +84,17 @@ func _on_assign_button_pressed():
 			Global.add_item(item, true)
 			is_assigned = true
 		update_assignment_status()
+
+
+func _on_item_button_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+			if item != null:
+				usage_panel.visible = !usage_panel.visible
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				outer_border.modulate = Color(1, 1, 0)
+				drag_start.emit(self)
+			else:
+				outer_border.modulate = Color(1, 1, 1)
+				drag_end.emit()
